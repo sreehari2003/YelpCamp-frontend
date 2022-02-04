@@ -5,11 +5,11 @@ import { useRouter } from "next/router";
 function MyApp({ Component, pageProps }) {
   const [bar, showBar] = useState(true);
   const router = useRouter();
-  // useEffect(() => {
-  //   if (router.pathname === "/") {
-  //     showBar(false);
-  //   }
-  // }, []);
+  useEffect(() => {
+    if (router.pathname === "/") {
+      showBar(false);
+    }
+  }, []);
   return (
     <>
       {bar && <Navbar />}
