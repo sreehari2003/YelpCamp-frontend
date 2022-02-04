@@ -4,11 +4,13 @@ import Link from "next/link";
 import { HiMenuAlt2 } from "react-icons/hi";
 //components
 import MobileNav from "./MobileNav";
+import { motion } from "framer-motion";
 const Navbar = () => {
   const [show, setShow] = useState(false);
   const toggle = () => {
     setShow((el) => !el);
   };
+
   return (
     <>
       {show && <MobileNav click={toggle} />}
@@ -18,7 +20,7 @@ const Navbar = () => {
             <h1 className={classes.mainChild}>YelpCamp</h1>
           </Link>
           <Link href="/campgrounds">
-            <h3 className={classes.mainChild}>campgrounds</h3>
+            <h3 className={classes.mainChild}>Campgrounds</h3>
           </Link>
           <Link href="/about">
             <h3 className={classes.mainChild}>About</h3>
