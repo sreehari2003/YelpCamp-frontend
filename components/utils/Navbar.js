@@ -4,7 +4,6 @@ import Link from "next/link";
 import { HiMenuAlt2 } from "react-icons/hi";
 //components
 import MobileNav from "./MobileNav";
-import { motion } from "framer-motion";
 const Navbar = () => {
   const [show, setShow] = useState(false);
   const toggle = () => {
@@ -16,6 +15,7 @@ const Navbar = () => {
       {show && <MobileNav click={toggle} />}
       <div className={classes.navbar}>
         <div className={classes.main}>
+          <h1 className={classes.mobh}>YelpCamp</h1>
           <Link href="/">
             <h1 className={classes.mainChild}>YelpCamp</h1>
           </Link>

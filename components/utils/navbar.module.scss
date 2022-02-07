@@ -82,3 +82,9 @@
     padding-right: 0;
   }
 }
+.mobh {
+  display: none;
+  @include mob {
+    display: block;
+  }
+}

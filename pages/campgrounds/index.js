@@ -1,11 +1,45 @@
 import React from "react";
-
-const index = () => {
+import Head from "next/head";
+const index = ({ data }) => {
   return (
     <div>
+      <Head>
+        <title>campgrounds</title>
+      </Head>
       <h1>Hello campground</h1>
     </div>
   );
 };
 
 export default index;
+
+export const getStaticProps = async (props) => {
+  let data;
+  try {
+    const res = await fetch("http://localhost:4000/api/camp");
+    const datass = await res.json();
+    data = datass.res;
+    if (!res.ok) throw new Error("Couldn't connect ");
+  } catch (e) {
+    console.log(e);
+  }
+  if (!Array.isArray(data)) {
+    return {
+      notFound: true,
+    };
+  }
+
+  if (!data) {
+    return {
+      redirect: {
+        destination: "/", //provide the patj
+      },
+    };
+  }
+  return {
+    props: {
+      list: "hello world",
+      data: data,
+    },
+  };
+};
