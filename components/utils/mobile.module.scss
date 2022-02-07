@@ -5,6 +5,7 @@
   z-index: 1000;
   //   background: #001219;
   background: #132647;
+  animation: navbar 0.3s ease-in;
 }
 .icon {
   width: 50px;
@@ -57,4 +58,13 @@
   flex-direction: column;
   // justify-content: space-around;
   justify-content: center;
+}
+
+@keyframes navbar {
+  0% {
+    transform: translateX(-350px);
+  }
+  100% {
+    transform: translateX(0);
+  }
 }
