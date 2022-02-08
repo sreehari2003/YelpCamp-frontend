@@ -1,6 +1,8 @@
 import React from "react";
 import Head from "next/head";
-const index = ({ data }) => {
+import { GetStaticProps} from "next"
+
+const index:React.FC = ({ data }) => {
   return (
     <div>
       <Head>
@@ -13,8 +15,8 @@ const index = ({ data }) => {
 
 export default index;
 
-export const getStaticProps = async (props) => {
-  let data;
+export const getStaticProps= async ({}:GetStaticProps) => {
+  let data:[];
   try {
     const res = await fetch("http://localhost:4000/api/camp");
     const datass = await res.json();

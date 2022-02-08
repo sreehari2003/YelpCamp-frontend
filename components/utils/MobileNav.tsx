@@ -4,7 +4,11 @@ import NavModal from "../../modals/NavModal";
 import Link from "next/link";
 import { GrClose } from "react-icons/gr";
 
-const MobileNav = ({ click }) => {
+interface types {
+  click: ()=>void;
+}
+
+const MobileNav:React.FC<types> = ({ click }) => {
   return (
     <>
       <NavModal>

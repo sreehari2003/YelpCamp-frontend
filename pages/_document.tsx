@@ -7,6 +7,7 @@ class MyDocument extends Document {
         <Head />
         <body>
           <div id="nav"></div>
+          <div id="portal"></div>
           <Main />
           <NextScript />
         </body>

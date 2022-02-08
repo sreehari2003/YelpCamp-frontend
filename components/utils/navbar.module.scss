@@ -84,6 +84,11 @@
 }
 .mobh {
   display: none;
+  &:hover {
+    color: rgba(255, 255, 255, 0.712);
+    transition: 0.3s;
+    cursor: pointer;
+  }
   @include mob {
     display: block;
   }
