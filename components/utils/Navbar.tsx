@@ -5,7 +5,7 @@ import { HiMenuAlt2 } from "react-icons/hi";
 //components
 import MobileNav from "./MobileNav";
 const Navbar = () => {
-  const [show, setShow] = useState(false);
+  const [show, setShow] = useState<boolean>(false);
   const toggle = () => {
     setShow((el) => !el);
   };

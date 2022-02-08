@@ -1,6 +1,6 @@
 import React from "react";
 import { useRouter } from "next/router";
-const Id = () => {
+const Id:React.FC = () => {
   const router = useRouter();
   const id = router.query.id;
   return (
