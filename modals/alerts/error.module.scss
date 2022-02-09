@@ -1,0 +1,21 @@
+.box {
+  background: #ffba08;
+  padding: 30px 40px;
+  width: 600px;
+  height: 200px;
+  border-radius: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+.box h2 {
+  text-align: center;
+  padding-bottom: 10px;
+}
+.box h3 {
+  padding: 20px;
+}
+.btn {
+  margin-top: 20px;
+}
