@@ -4,17 +4,32 @@ import classes from "../../styles/new.module.scss";
 import Link from "next/link";
 import Head from "next/head";
 import axios from "axios";
+import Alert from "../../modals/alerts/Alert"
 
+interface ress{
+  title: string;
+  description: string;
+  location: string;
+  image:string;
+  price: number;
+  reviews:string[];
+  __id: string;
+}
+interface result{
+  ok:boolean;
+  res:ress
+}
 const Index = () => {
-  const [err, seteErr] = useState(false);
-  const title = useRef();
-  const location = useRef();
-  const imgUrl = useRef();
-  const price = useRef();
-  const dsc = useRef();
+  const [err, seteErr] = useState<boolean>(false);
+  const title = useRef<HTMLInputElement>();
+  const location = useRef<HTMLInputElement>();
+  const imgUrl = useRef<HTMLInputElement>();
+  const price = useRef<HTMLInputElement>();
+  const dsc = useRef<HTMLInputElement>();
 
-  const onSubmit = (e) => {
+  const onSubmit = (e:React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+   if(title.current && location.current && imgUrl.current && price.current && dsc.current){
     const tit = title.current.value;
     const loc = location.current.value;
     const img = imgUrl.current.value;
@@ -25,9 +40,9 @@ const Index = () => {
       loc.length < 0 ||
       img.length < 0 ||
       dscs.length < 0 ||
-      pr <= 0
+      pr.length <= 0
     ) {
-      seteErr(true);
+       alert("Please enter all input")
     } else {
       const dt = {
         title: tit,
@@ -38,19 +53,23 @@ const Index = () => {
       };
       const sendData = async () => {
         try {
-          const res = await axios.post("http://localhost:4000/api/camp", dt);
-          if (!res.data.ok) {
+          const res:result = await axios.post("http://localhost:4000/api/camp", dt);
+          if (!res.ok) {
+            seteErr(true)
             throw new Error("wrong");
           }
+          // seteErr(true);
         } catch (e) {
           console.log(e);
         }
       };
       sendData();
     }
+   }
   };
   return (
     <>
+    {err && <Alert code={404}/>}
       <Head>
         <title>New Camp</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
