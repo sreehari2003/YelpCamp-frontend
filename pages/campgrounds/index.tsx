@@ -1,14 +1,29 @@
 import React from "react";
 import Head from "next/head";
 import { GetStaticProps} from "next"
-const index:React.FC = ({ data }:any) => {
-  console.log(data);
+import Image from "next/image"
+import ImgLoader from "../../components/utils/loaders/ImgLoader"
+interface dt {
+  _id: number;
+  title: string;
+  description: string;
+  location: string;
+  image: string;
+  price:number;
+  reviews: string[];
+}
+const index:React.FC= ({data}:any) => {
+   const elm:dt[] = data; 
+
   return (
     <div>
       <Head>
         <title>campgrounds</title>
       </Head>
-      <h1>Hello campground</h1>
+      <h1>Campgrounds</h1>
+      {elm.map(el=>(
+        <Image src={el.image} width={500} height={500} key={el._id} alt={el.title}/>
+      ))}
     </div>
   );
 };
