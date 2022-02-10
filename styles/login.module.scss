@@ -1,0 +1,17 @@
+.login {
+  height: 100vh;
+  //   background: rgba(182, 179, 179, 0.76);
+  flex-direction: column;
+}
+.login h2 {
+  text-align: center;
+  padding-top: 20px;
+  font-size: 30px;
+}
+.dis {
+  width: 400px;
+}
+.fr {
+  display: flex;
+  flex-direction: column;
+}
