@@ -4,8 +4,13 @@ import Link from "next/link";
 import { HiMenuAlt2 } from "react-icons/hi";
 //components
 import MobileNav from "./MobileNav";
-const Navbar = () => {
+const Navbar:React.FC = () => {
   const [show, setShow] = useState<boolean>(false);
+  // const [scroll, setScroll] = useState<boolean>(false);
+  // window.onscroll = () => {
+  //   setScroll(window.pageYOffset > 10 ? true : false);
+  //   return () => (window.onscroll = null);
+  // };
   const toggle = () => {
     setShow((el) => !el);
   };
@@ -13,7 +18,7 @@ const Navbar = () => {
   return (
     <>
       {show && <MobileNav click={toggle} />}
-      <div className={classes.navbar}>
+      <div className={`${classes.navbar}`} >
         <div className={classes.main}>
           <h1 className={classes.mobh}>YelpCamp</h1>
           <Link href="/">
@@ -22,8 +27,8 @@ const Navbar = () => {
           <Link href="/campgrounds">
             <h3 className={classes.mainChild}>Campgrounds</h3>
           </Link>
-          <Link href="/about">
-            <h3 className={classes.mainChild}>About</h3>
+          <Link href="/profile">
+            <h3 className={classes.mainChild}>Profile</h3>
           </Link>
           <Link href="/new">
             <h3 className={classes.mainChild}>New</h3>

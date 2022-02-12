@@ -1,10 +1,10 @@
 import React from "react";
 import Head from "next/head";
 import { GetStaticProps } from "next";
-import Image from "next/image";
 import classes from "../../styles/camp.module.scss";
-import Button from '@mui/material/Button';
-import { useRouter } from "next/router"
+
+import Cards from "../../components/Cards";
+
 
 interface dt {
   _id: number;
@@ -17,33 +17,21 @@ interface dt {
 }
 const index: React.FC = ({ data }: any) => {
   const elm: dt[] = data;
-  const router = useRouter();
+
   return (
     <div className={classes.bd}>
       <Head>
         <title>campgrounds</title>
       </Head>
-
-      {elm.map((el) => (
-        <div className={classes.box} key={el._id}>
-          <Image
-            src={el.image}
-            width={350}
-            height={500}
-            key={el._id}
-            alt={el.title}
-          />
-          <div className={classes.box_sub}>
-            <h2>{el.title}</h2>
-            <h2>${el.price}</h2>
-          </div>
-          <div className={classes.info}>
-            {/* <h2>info</h2> */}
-            <p>{el.description}</p>
-            <Button variant="contained" onClick={()=>router.push(`/campgrounds/${el._id}`)}>View Camp</Button>
-          </div>
-        </div>
+      <div className={`${classes.banner} overlay`}>
+        <h1>Welcome to Yelpcamp</h1>
+        <h4>View Campgrounds All Over The World</h4>
+        </div>  
+     <div className={classes.camp}>
+     {elm.map((el:dt) => (
+        <Cards {...el}/>
       ))}
+     </div>
     </div>
   );
 };

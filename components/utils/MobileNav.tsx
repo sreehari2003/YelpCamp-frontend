@@ -28,7 +28,7 @@ const MobileNav:React.FC<types> = ({ click }) => {
           </Link>
             </div>
             <div className={classes.route}>
-              <Link href="/about">About</Link>
+              <Link href="/profile">Profile</Link>
             </div>
             <div className={classes.route}>
               <Link href="/new">New</Link>

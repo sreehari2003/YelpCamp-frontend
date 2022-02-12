@@ -29,7 +29,7 @@
 }
 .navbar {
   color: white;
-  height: 10vh;
+  height: 7vh;
   background: #132647;
   display: flex;
   justify-content: space-between;
@@ -92,4 +92,9 @@
   @include mob {
     display: block;
   }
+}
+.scroll {
+  position: fixed;
+  background: red;
+  transition: all 0.2s;
 }

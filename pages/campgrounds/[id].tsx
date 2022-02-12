@@ -11,6 +11,7 @@ const Id = ({data}:any) => {
   return (
     <div>
       <h1>HEllo from {id}</h1>
+      <h1>ehello...</h1>
     </div>
   );
 };
