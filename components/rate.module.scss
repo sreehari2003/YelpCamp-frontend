@@ -3,7 +3,14 @@
   //   padding: 90px 200px;
   //   position: absolute;
   width: 500px;
-  height: 200px;
+  height: 400px;
+  & form {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    justify-content: space-between;
+  }
+  // flex-direction: column;
 }
 .close {
   display: flex;
@@ -16,8 +23,20 @@
   }
 }
 .star {
+  display: flex;
+  flex-direction: column;
   height: 70%;
+  justify-content: space-between;
+  align-items: center;
+  & button {
+    margin-top: 15px !important;
+  }
   & label {
     font-size: 40px;
+  }
+}
+.text {
+  & label {
+    font-size: 20px !important;
   }
 }

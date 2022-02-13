@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import Image from "next/Image";
+import Image from "next/image";
 import { response } from "../type/res";
 import classes from "./main.module.scss";
 import Button from "@mui/material/Button";
@@ -21,6 +21,7 @@ const MainCard: React.FC<response> = (props) => {
         {show && (
           <MainBackDrop>
             <Ratings change={change} val={getVal}/>
+           
           </MainBackDrop> 
         )}
       </>
