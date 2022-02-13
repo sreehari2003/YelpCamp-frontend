@@ -29,7 +29,7 @@ const index: React.FC = ({ data }: any) => {
         </div>  
      <div className={classes.camp}>
      {elm.map((el:dt) => (
-        <Cards {...el}/>
+        <Cards {...el} key={Date.now()}/>
       ))}
      </div>
     </div>

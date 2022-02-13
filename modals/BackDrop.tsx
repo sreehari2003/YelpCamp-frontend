@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React,{ useState } from "react";
 import classes from "./back.module.scss";
 const BackDrop:React.FC = (props) => {
   const [show, setShow] = useState<boolean>(true);
