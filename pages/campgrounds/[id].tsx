@@ -4,12 +4,8 @@ import { response } from "../../type/res";
 import { GetServerSideProps } from "next";
 import classes from "../../styles/sub.module.scss";
 import MainCard from "../../components/MainCard";
-import axios from "axios";
+
 const Id = ({ data }: any) => {
-  const dt: response[] = data;
-  const router = useRouter();
-  const id = router.query.id;
-  console.log(data);
   return (
     <div className={classes.grid}>
       <div className={classes.sub}></div>

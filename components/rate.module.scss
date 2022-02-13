@@ -1,0 +1,23 @@
+.box {
+  background: white;
+  //   padding: 90px 200px;
+  //   position: absolute;
+  width: 500px;
+  height: 200px;
+}
+.close {
+  display: flex;
+  justify-content: flex-end;
+  padding-right: 20px;
+  font-size: 30px;
+  padding-top: 10px;
+  & svg {
+    cursor: pointer;
+  }
+}
+.star {
+  height: 70%;
+  & label {
+    font-size: 40px;
+  }
+}
