@@ -17,6 +17,7 @@ const Cards:React.FC<response> = (props) => {
       height={450}
       key={el._id}
       alt={el.title}
+      className={classes.img}
     />
     <div className={classes.box_sub}>
       <h2>{el.title}</h2>
