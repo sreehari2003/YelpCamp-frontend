@@ -1,6 +1,7 @@
 import React,{ useState } from "react";
 import classes from "./back.module.scss";
-const BackDrop:React.FC = (props) => {
+import {child} from "../type/res"
+const BackDrop:React.FC<child> = (props) => {
   const [show, setShow] = useState<boolean>(true);
   const onClick = () => {
     // props.onClose();
