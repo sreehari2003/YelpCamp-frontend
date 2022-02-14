@@ -1,3 +1,7 @@
+interface review{
+  body: string,
+  rating: number
+}
 export interface response {
     _id: number;
     title: string;
@@ -5,5 +9,9 @@ export interface response {
     location: string;
     image: string;
     price: number;
-    reviews: string[];
+    reviews: review[];
   }
+
+  export interface child{
+    children: React.ReactNode;
+}
