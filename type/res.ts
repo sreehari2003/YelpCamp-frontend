@@ -1,6 +1,6 @@
 interface review{
-  body: string,
-  rating: number
+  body: string;
+  rating: number;
 }
 export interface response {
     _id: number;

@@ -8,19 +8,17 @@ import MainBackDrop from "../modals/alerts/MainBackDrop";
 import Ratings from "./Ratings";
 const MainCard: React.FC<response> = (props) => {
   const [show, setShow] = useState<boolean>(false);
-  const [val,setVal] = useState<number>(0);
   const change = ()=>{
     setShow((el)=>!el);
   }
-  const getVal = (val:number) =>{
-        setVal(val);
-  }
+  const msg = props.reviews.length > 0 ? "Leave A review" : "No Reviews Yet, Leave a Review";
+
   return (
     <div className={classes.body}>
       <>
         {show && (
           <MainBackDrop>
-            <Ratings change={change} val={getVal}/>
+            <Ratings change={change} show={change}/>
            
           </MainBackDrop> 
         )}
@@ -46,8 +44,8 @@ const MainCard: React.FC<response> = (props) => {
           <Button variant="contained">Delete</Button>
         </div>
         <div className={classes.ratings} onClick={change}>
-          <Readrate val={val} />
-          <h3>Leave a review</h3>
+          <Readrate {...props} />
+          <h3>{msg}</h3>
         </div>
       </div>
     </div>
