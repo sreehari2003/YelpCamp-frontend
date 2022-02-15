@@ -2,21 +2,12 @@ import React from "react";
 import Head from "next/head";
 import { GetStaticProps } from "next";
 import classes from "../../styles/camp.module.scss";
-
+import { v4 as uuidv4 } from 'uuid';
 import Cards from "../../components/Cards";
+import {response} from "../../type/res"
 
-
-interface dt {
-  _id: number;
-  title: string;
-  description: string;
-  location: string;
-  image: string;
-  price: number;
-  reviews: string[];
-}
 const index: React.FC = ({ data }: any) => {
-  const elm: dt[] = data;
+  const elm: response[] = data;
 
   return (
     <div className={classes.bd}>
@@ -28,8 +19,8 @@ const index: React.FC = ({ data }: any) => {
         <h4>View Campgrounds All Over The World</h4>
         </div>  
      <div className={classes.camp}>
-     {elm.map((el:dt) => (
-        <Cards {...el} key={Date.now()}/>
+     {elm.map((el:response) => (
+        <Cards {...el} key={uuidv4()}/>
       ))}
      </div>
     </div>
