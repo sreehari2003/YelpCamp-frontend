@@ -12,9 +12,9 @@ import {useRouter } from "next/router";
 
 interface change {
   change: () => void;
-  val: (el: number) => void;
+  show:()=>void;
 }
-const Ratings = ({ change, val }: change) => {
+const Ratings = ({ change,show }: change) => {
   const router = useRouter();
   const ids = router.query.id;
   const [value, setValue] = useState<number>(2);
@@ -35,13 +35,13 @@ const Ratings = ({ change, val }: change) => {
           const sendRev = async ()=>{
             try{
             const res =  await axios.post(`http://localhost:4000/api/camp/${ids}/reviews`,data);
-            console.log(res)
             }catch(e){
               console.log(e);
               alert("couldnt send the request");
             }
           }
           sendRev();
+          show();
          }
        }
   }
@@ -60,7 +60,6 @@ const Ratings = ({ change, val }: change) => {
             value={value}
             onChange={(event, newValue) => {
               if (newValue != null) setValue(newValue);
-              val(value);
             }}
           />
           <TextField
