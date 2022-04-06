@@ -1,33 +1,38 @@
-import React,{useState} from 'react'
-import  {child} from "../type/res"
+import React, { useState, createContext } from "react";
+import { child } from "../type/res";
 
-export interface md{
-    load:boolean;
-    loadScreen:()=>void;
+export interface modal {
+  load: boolean;
+  loadScreen: () => void;
+  progress: boolean;
+  loader: () => void;
 }
- const ModalContext = React.createContext<md>({
-    load:false,
-    loadScreen:()=>{}
+export const ModalContext = createContext<modal>({
+  progress: true,
+  loader: () => {},
+  load: false,
+  loadScreen: () => {},
 });
 
-
-
-export const ModalContextProvider = (props:child) => {
-    const [load,setLoad] = useState<boolean>(false)
-    const loadScreen = ()=>{
-        setLoad((el)=>!el);
-        console.log(load)
-    }
-
-    const ctxVal = {
-        load,
-        loadScreen
-    }
+export const ModalContextProvider = (props: child) => {
+  const [load, setLoad] = useState<boolean>(false);
+  const [progress, setProgress] = useState<boolean>(true);
+  const loadScreen = () => {
+    setLoad((el) => !el);
+    console.log(progress);
+  };
+  const loader = () => {
+    setProgress((el) => !el);
+  };
+  const ctxVal = {
+    load,
+    loadScreen,
+    progress,
+    loader,
+  };
   return (
-    <ModalContext.Provider value={ctxVal}> 
+    <ModalContext.Provider value={ctxVal}>
       {props.children}
     </ModalContext.Provider>
-  )
-}
-
-export default ModalContext;
+  );
+};

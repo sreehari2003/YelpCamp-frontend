@@ -9,7 +9,7 @@ const Id = ({ data }: any) => {
     <div className={classes.grid}>
       <div className={classes.sub}></div>
       <div className={classes.main}>
-        <MainCard {...data}/>
+        <MainCard {...data} />
       </div>
     </div>
   );
@@ -21,10 +21,10 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
   const { params } = ctx;
   let data;
   if (params) {
-    const res = await fetch(`http://localhost:4000/api/camp/${params.id}`);
+    const res = await fetch(`http://localhost:4000/api/camp/v1/${params.id}`);
     data = await res.json();
   }
-  const res: response  = data.res;
+  const res: response = data.res;
   if (!res) {
     return {
       redirect: {

@@ -1,24 +1,25 @@
 import React, { useRef, useState } from "react";
-import TextField from "@material-ui/core/TextField";
+import TextField from "@mui/material/TextField";
 import classes from "../../styles/new.module.scss";
 import Link from "next/link";
 import Head from "next/head";
 import axios from "axios";
-import Alert from "../../modals/alerts/Alert"
+import Alert from "../../modals/alerts/Alert";
 
-interface ress{
+interface ress {
   title: string;
   description: string;
   location: string;
-  image:string;
+  image: string;
   price: number;
-  reviews:string[];
+  reviews: string[];
   __id: string;
 }
-interface result{
-  ok:boolean;
-  res:ress
+interface result {
+  ok: boolean;
+  res: ress;
 }
+
 const Index = () => {
   const [err, seteErr] = useState<boolean>(false);
   const title = useRef<HTMLInputElement>();
@@ -27,49 +28,59 @@ const Index = () => {
   const price = useRef<HTMLInputElement>();
   const dsc = useRef<HTMLInputElement>();
 
-  const onSubmit = (e:React.FormEvent<HTMLFormElement>) => {
+  const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-   if(title.current && location.current && imgUrl.current && price.current && dsc.current){
-    const tit = title.current.value;
-    const loc = location.current.value;
-    const img = imgUrl.current.value;
-    const dscs = dsc.current.value;
-    const pr = price.current.value;
     if (
-      tit.length < 0 ||
-      loc.length < 0 ||
-      img.length < 0 ||
-      dscs.length < 0 ||
-      pr.length <= 0
+      title.current &&
+      location.current &&
+      imgUrl.current &&
+      price.current &&
+      dsc.current
     ) {
-       alert("Please enter all input")
-    } else {
-      const dt = {
-        title: tit,
-        description: dscs,
-        location: loc,
-        image: img,
-        price: pr,
-      };
-      const sendData = async () => {
-        try {
-          const res:result = await axios.post("http://localhost:4000/api/camp", dt);
-          if (!res.ok) {
-            seteErr(true)
-            throw new Error("wrong");
+      const tit = title.current.value;
+      const loc = location.current.value;
+      const img = imgUrl.current.value;
+      const dscs = dsc.current.value;
+      const pr = price.current.value;
+      if (
+        tit.length < 0 ||
+        loc.length < 0 ||
+        img.length < 0 ||
+        dscs.length < 0 ||
+        pr.length <= 0
+      ) {
+        alert("Please enter all input");
+      } else {
+        const dt = {
+          title: tit,
+          description: dscs,
+          location: loc,
+          image: img,
+          price: pr,
+        };
+        console.log(dt);
+        const sendData = async () => {
+          try {
+            const res: result = await axios.post(
+              "http://localhost:4000/api/camp/v1",
+              dt
+            );
+            if (!res.ok) {
+              seteErr(true);
+              throw new Error("wrong");
+            }
+            // seteErr(true);
+          } catch (e) {
+            console.log(e);
           }
-          // seteErr(true);
-        } catch (e) {
-          console.log(e);
-        }
-      };
-      sendData();
+        };
+        sendData();
+      }
     }
-   }
   };
   return (
     <>
-    {err && <Alert code={404}/>}
+      {err && <Alert code={404} />}
       <Head>
         <title>New Camp</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
