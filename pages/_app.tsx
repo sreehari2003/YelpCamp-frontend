@@ -1,22 +1,19 @@
 import "../styles/globals.css";
-import { useState,useContext } from "react";
+import { useContext } from "react";
 import Navbar from "../components/utils/Navbar";
-import { ModalContextProvider }  from "../context/ModalContext";
+import { ModalContextProvider, ModalContext } from "../context/ModalContext";
 import MainBackDrop from "../modals/alerts/MainBackDrop";
-import ModalContext from "../context/ModalContext";
-import {md} from "../context/ModalContext"
-import CircularProgress from '@mui/material/CircularProgress';
+import CircularProgress from "@mui/material/CircularProgress";
+import LinearProgress from "@mui/material/LinearProgress";
 
-function MyApp({ Component, pageProps }:any) {
-   const ctx = useContext<md>(ModalContext);  
+function MyApp({ Component, pageProps }: any) {
+  const ctx = useContext(ModalContext);
   return (
     <>
-    {ctx.load && <MainBackDrop>
-       <CircularProgress />
-         </MainBackDrop>}
       <ModalContextProvider>
-      <Navbar/>
-      <Component {...pageProps} />
+        <Navbar />
+        {/* {ctx.progress && <LinearProgress className="colo" />} */}
+        <Component {...pageProps} />
       </ModalContextProvider>
     </>
   );
