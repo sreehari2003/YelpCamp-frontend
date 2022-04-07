@@ -2,9 +2,11 @@ import React, { useRef } from "react";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 import styles from "../../styles/sign.module.scss";
+import { FcGoogle } from "react-icons/fc";
+import { notifyMessage } from "../../helper/toast";
 import axios from "axios";
 
-const signUp = () => {
+const signUp: React.FC = () => {
   const name = useRef<HTMLInputElement>();
   const email = useRef<HTMLInputElement>();
   const password = useRef<HTMLInputElement>();
@@ -12,7 +14,7 @@ const signUp = () => {
 
   const api = "http://localhost:4000/api/auth/signup";
 
-  const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (
       name.current &&
@@ -25,12 +27,12 @@ const signUp = () => {
       const passwords = password.current.value;
       const passwordCon = confirmPassword.current.value;
       if (
-        names.length < 0 ||
-        emails.length < 0 ||
-        passwords.length < 0 ||
-        passwordCon.length < 0
+        names.length < 1 ||
+        emails.length < 1 ||
+        passwords.length < 1 ||
+        passwordCon.length < 1
       ) {
-        alert("Please enter all input");
+        notifyMessage("Please enter all input");
       } else {
         const dt = {
           name: names,
@@ -38,6 +40,19 @@ const signUp = () => {
           password: passwords,
           passwordConfirm: passwordCon,
         };
+        try {
+          const { data, status } = await axios.post(api, dt);
+          if (status > 201) {
+            throw new Error("Error creating user");
+          }
+          notifyMessage(data?.message);
+          name.current.value = "";
+          email.current.value = "";
+          password.current.value = "";
+          confirmPassword.current.value = "";
+        } catch (e) {
+          notifyMessage(e);
+        }
       }
     }
   };
@@ -46,38 +61,40 @@ const signUp = () => {
     <>
       <div className={styles.bdy}>
         <h1>Sign Up</h1>
-        <form>
+        <form onSubmit={onSubmit}>
           <div className={styles.txt}>
             <TextField
               id="outlined-basic"
               label="Name"
               variant="outlined"
-              required={true}
+              inputRef={name}
             />
           </div>
           <div className={styles.txt}>
             <TextField
-              id="outlined-basic"
+              id="outlined-basic2"
               label="Email"
               variant="outlined"
               type="email"
-              required={true}
+              inputRef={email}
             />
           </div>
           <div className={styles.txt}>
             <TextField
-              id="outlined-basic"
+              id="outlined-basic3"
               label="password"
               variant="outlined"
-              required={true}
+              type="password"
+              inputRef={password}
             />
           </div>
           <div className={styles.txt}>
             <TextField
-              id="outlined-basic"
+              id="outlined-basic4"
               label="confirm password"
               variant="outlined"
-              required={true}
+              type="password"
+              inputRef={confirmPassword}
             />
           </div>
           <div className={styles.txts}>
@@ -86,6 +103,13 @@ const signUp = () => {
             </Button>
           </div>
         </form>
+        <span>or</span>
+        <div className={styles.txts}>
+          <Button type="submit" variant="contained" className={styles.oAuth}>
+            Google
+            <FcGoogle />
+          </Button>
+        </div>
       </div>
     </>
   );

@@ -5,6 +5,7 @@ import Link from "next/link";
 import Head from "next/head";
 import axios from "axios";
 import Alert from "../../modals/alerts/Alert";
+import { notifyMessage } from "../../helper/toast";
 
 interface ress {
   title: string;
@@ -67,11 +68,12 @@ const Index = () => {
             );
             if (!res.ok) {
               seteErr(true);
-              throw new Error("wrong");
+              throw new Error("could not add the camp something went wrong");
             }
+            notifyMessage("New camp was added succesfully");
             // seteErr(true);
           } catch (e) {
-            console.log(e);
+            notifyMessage(e);
           }
         };
         sendData();

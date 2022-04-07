@@ -2,7 +2,10 @@ import React from "react";
 import TextField from "@mui/material/TextField";
 import classes from "../../styles/login.module.scss";
 import Button from "@mui/material/Button";
+import { useRouter } from "next/router";
+import { FcGoogle } from "react-icons/fc";
 const index = () => {
+  const router = useRouter();
   return (
     <div className={`${classes.login}`}>
       <h2>Login</h2>
@@ -31,6 +34,21 @@ const index = () => {
               <Button type="submit" variant="contained">
                 Login
               </Button>
+              <span
+                className={classes.forgot}
+                onClick={() => router.push("/login/reset")}
+              >
+                Forgot password ?{" "}
+              </span>
+            </div>
+            <div className={classes.google}>
+              <span className={classes.or}>or</span>
+              <div className={classes.txts}>
+                <Button variant="contained" className={classes.oAuth}>
+                  Google
+                  <FcGoogle />
+                </Button>
+              </div>
             </div>
           </form>
         </div>

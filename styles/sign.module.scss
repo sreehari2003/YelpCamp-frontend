@@ -4,13 +4,27 @@
   justify-content: center;
   align-items: center;
   flex-direction: column;
+  & span{
+    font-family: sans-serif;
+  }
 }
 .txt {
   padding: 10px;
 }
 .txts {
   padding: 10px;
+
   & button {
     padding: 10px 80px;
   }
+}
+.oAuth {
+  background: white !important;
+  color:black !important;
+  border: 2px solid black !important;
+  display: flex !important;
+  justify-content: space-around !important;
+  padding: 10px 70px !important;
+  // text-transform: lowercase !important;
+  // font-size: 20px !important;
 }

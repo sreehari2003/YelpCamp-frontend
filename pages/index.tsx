@@ -3,13 +3,16 @@ import Link from "next/link";
 import Head from "next/head";
 import { ModalContext } from "../context/ModalContext";
 import { useContext } from "react";
+import { toast } from "react-toastify";
 const index = () => {
   const ctx = useContext(ModalContext);
+
   return (
     <div>
       <Head>
         <title>YelpCamp</title>
       </Head>
+
       <div id="landing-header">
         <h1 className="display-4">Welcome to YelpCamp!</h1>
         <div className="link">
