@@ -8,6 +8,7 @@ import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";
 import axios from "axios";
 import { useRouter } from "next/router";
+import { notifyMessage } from "../helper/toast";
 
 interface change {
   change: () => void;
@@ -38,6 +39,7 @@ const Ratings = ({ change, show }: change) => {
               `http://localhost:4000/api/camp/v1/${ids}/reviews`,
               data
             );
+            notifyMessage("review was added successfully");
           } catch (e) {
             console.log(e);
             alert("couldnt send the request");

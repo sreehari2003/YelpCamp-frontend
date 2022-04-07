@@ -5,6 +5,7 @@ import { ModalContextProvider, ModalContext } from "../context/ModalContext";
 import MainBackDrop from "../modals/alerts/MainBackDrop";
 import CircularProgress from "@mui/material/CircularProgress";
 import LinearProgress from "@mui/material/LinearProgress";
+import { ToastContainer } from "react-toastify";
 
 function MyApp({ Component, pageProps }: any) {
   const ctx = useContext(ModalContext);
@@ -12,6 +13,16 @@ function MyApp({ Component, pageProps }: any) {
     <>
       <ModalContextProvider>
         <Navbar />
+        <ToastContainer
+          autoClose={3000}
+          hideProgressBar={false}
+          newestOnTop={false}
+          closeOnClick
+          rtl={false}
+          pauseOnFocusLoss
+          draggable
+          pauseOnHover
+        />
         {/* {ctx.progress && <LinearProgress className="colo" />} */}
         <Component {...pageProps} />
       </ModalContextProvider>
