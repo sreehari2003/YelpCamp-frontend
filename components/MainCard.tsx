@@ -8,19 +8,21 @@ import MainBackDrop from "../modals/alerts/MainBackDrop";
 import Ratings from "./Ratings";
 const MainCard: React.FC<response> = (props) => {
   const [show, setShow] = useState<boolean>(false);
-  const change = ()=>{
-    setShow((el)=>!el);
-  }
-  const msg = props.reviews.length > 0 ? "Leave A review" : "No Reviews Yet, Leave a Review";
+  const change = () => {
+    setShow((el) => !el);
+  };
+  const msg =
+    props.reviews.length > 0
+      ? "Leave A review"
+      : "No Reviews Yet, Leave a Review";
 
   return (
     <div className={classes.body}>
       <>
         {show && (
           <MainBackDrop>
-            <Ratings change={change} show={change}/>
-           
-          </MainBackDrop> 
+            <Ratings change={change} show={change} />
+          </MainBackDrop>
         )}
       </>
       <div className={classes.box} key={props._id}>
@@ -39,9 +41,12 @@ const MainCard: React.FC<response> = (props) => {
           <p>{props.description}</p>
         </div>
         <div className={`${classes.info} ${classes.price}`}>${props.price}</div>
-        <div className={`${classes.info} ${classes.btn}`}>
-          <Button variant="contained">Edit</Button>
-          <Button variant="contained">Delete</Button>
+        <div className={`${classes.info}`}>
+          <div className={`${classes.btn}`}>
+            <Button variant="contained">Edit</Button>
+            <Button variant="contained">Delete</Button>
+            <Button variant="contained">Buy Camp</Button>
+          </div>
         </div>
         <div className={classes.ratings} onClick={change}>
           <Readrate {...props} />

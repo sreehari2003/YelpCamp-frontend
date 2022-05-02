@@ -1,11 +1,26 @@
-import React from "react";
+import React, { useRef } from "react";
 import TextField from "@mui/material/TextField";
 import classes from "../../styles/login.module.scss";
 import Button from "@mui/material/Button";
 import { useRouter } from "next/router";
 import { FcGoogle } from "react-icons/fc";
+import axios from "axios";
+
 const index = () => {
+  const API = "http://localhost:4000/api/login";
+
+  const email = useRef<HTMLInputElement>();
+  const password = useRef<HTMLInputElement>();
   const router = useRouter();
+
+  const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    if (email && password && email.current && password.current) {
+      const emailId = email.current.value;
+      const pass = password.current.value;
+    }
+  };
+
   return (
     <div className={`${classes.login}`}>
       <h2>Login</h2>
@@ -21,6 +36,7 @@ const index = () => {
                 variant="outlined"
                 className={classes.text}
                 required
+                inputRef={email}
               />
               <label htmlFor="outlined-search">password</label>
               <TextField
@@ -30,6 +46,7 @@ const index = () => {
                 variant="outlined"
                 className={classes.text}
                 required
+                inputRef={password}
               />
               <Button type="submit" variant="contained">
                 Login

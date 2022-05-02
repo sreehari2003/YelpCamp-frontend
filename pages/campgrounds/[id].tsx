@@ -6,8 +6,8 @@ import MainCard from "../../components/MainCard";
 
 const Id = ({ data }: any) => {
   return (
-    <div className={classes.grid}>
-      <div className={classes.sub}></div>
+    <div className={`flex`}>
+      {/* <div className={classes.sub}></div> */}
       <div className={classes.main}>
         <MainCard {...data} />
       </div>
