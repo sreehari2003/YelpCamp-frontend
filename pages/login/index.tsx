@@ -5,9 +5,11 @@ import Button from "@mui/material/Button";
 import { useRouter } from "next/router";
 import { FcGoogle } from "react-icons/fc";
 import axios from "axios";
+import { notifyMessage } from "../../helper/toast";
+import Cookie from "js-cookie";
 
 const index = () => {
-  const API = "http://localhost:4000/api/login";
+  const API = "http://localhost:4000/api/auth/login";
 
   const email = useRef<HTMLInputElement>();
   const password = useRef<HTMLInputElement>();
@@ -18,6 +20,20 @@ const index = () => {
     if (email && password && email.current && password.current) {
       const emailId = email.current.value;
       const pass = password.current.value;
+      const body = {
+        email: emailId,
+        password: pass,
+      };
+      (async () => {
+        try {
+          const { data, status } = await axios.post(API, body);
+          if (status > 201 || !data) throw new Error();
+          Cookie.set("jwt", data.token);
+          router.push("/campgrounds");
+        } catch (e) {
+          notifyMessage("invalid email or password");
+        }
+      })();
     }
   };
 
@@ -26,7 +42,7 @@ const index = () => {
       <h2>Login</h2>
       <div className="flex">
         <div className={`${classes.dis} flex`}>
-          <form className={classes.form}>
+          <form className={classes.form} onSubmit={onSubmit}>
             <div className={classes.fr}>
               <label htmlFor="outlined-search">E-Mail</label>
               <TextField
@@ -40,7 +56,7 @@ const index = () => {
               />
               <label htmlFor="outlined-search">password</label>
               <TextField
-                id="outlined-search"
+                id="outlined-searchs"
                 label=""
                 type="password"
                 variant="outlined"

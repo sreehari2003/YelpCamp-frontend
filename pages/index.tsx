@@ -1,12 +1,7 @@
 import React from "react";
 import Link from "next/link";
 import Head from "next/head";
-import { ModalContext } from "../context/ModalContext";
-import { useContext } from "react";
-import { toast } from "react-toastify";
 const index = () => {
-  const ctx = useContext(ModalContext);
-
   return (
     <div>
       <Head>
@@ -19,7 +14,7 @@ const index = () => {
           <Link href="/campgrounds">
             <span className="btn camp">View Campgrounds</span>
           </Link>
-          <span className="btn log" onClick={() => ctx.loader()}>
+          <span className="btn log">
             <Link href="/login">Log In</Link>
           </span>
         </div>

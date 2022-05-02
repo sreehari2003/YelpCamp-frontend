@@ -1,16 +1,14 @@
 import "../styles/globals.css";
-import { useContext } from "react";
 import Navbar from "../components/utils/Navbar";
-import { ModalContextProvider, ModalContext } from "../context/ModalContext";
-import MainBackDrop from "../modals/alerts/MainBackDrop";
-import CircularProgress from "@mui/material/CircularProgress";
-import LinearProgress from "@mui/material/LinearProgress";
 import { ToastContainer } from "react-toastify";
 import "nprogress/nprogress.css";
 import Router from "next/router";
 import React from "react";
 import NProgress from "nprogress";
-function MyApp({ Component, pageProps }: any) {
+import { Provider } from "react-redux";
+import { store } from "../store/config";
+import type { AppProps } from "next/app";
+function MyApp({ Component, pageProps }: AppProps) {
   React.useEffect(() => {
     const handleRouteStart = () => NProgress.start();
     const handleRouteDone = () => NProgress.done();
@@ -26,11 +24,9 @@ function MyApp({ Component, pageProps }: any) {
       Router.events.off("routeChangeError", handleRouteDone);
     };
   }, []);
-
-  const ctx = useContext(ModalContext);
   return (
     <>
-      <ModalContextProvider>
+      <Provider store={store}>
         <Navbar />
         <ToastContainer
           autoClose={3000}
@@ -44,7 +40,7 @@ function MyApp({ Component, pageProps }: any) {
         />
         {/* {ctx.progress && <LinearProgress className="colo" />} */}
         <Component {...pageProps} />
-      </ModalContextProvider>
+      </Provider>
     </>
   );
 }
