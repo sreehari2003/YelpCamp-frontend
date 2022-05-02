@@ -35,6 +35,7 @@ export const getStaticProps = async ({}: GetStaticProps) => {
     const res = await fetch("http://localhost:4000/api/camp/v1");
     const datass = await res.json();
     data = datass.res;
+    console.log(res);
     if (!res.ok) throw new Error("Couldn't connect ");
   } catch (e) {
     console.log(e);
