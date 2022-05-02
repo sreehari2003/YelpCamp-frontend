@@ -1,14 +1,34 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import classes from "./mobile.module.scss";
 import NavModal from "../../modals/NavModal";
 import Link from "next/link";
 import { GrClose } from "react-icons/gr";
+import Cookie from "js-cookie";
+import { useRouter } from "next/router";
 
 interface types {
-  click: ()=>void;
+  click: () => void;
 }
 
-const MobileNav:React.FC<types> = ({ click }) => {
+const MobileNav: React.FC<types> = ({ click }) => {
+  const router = useRouter();
+  const outPutAUth = Cookie.get("jwt");
+  const [show, setShow] = useState<boolean>(false);
+  const [auth, setAuth] = useState<boolean>(false);
+
+  useEffect(() => {
+    const outPutAUth = Cookie.get("jwt");
+    if (outPutAUth) {
+      setAuth(true);
+    }
+  }, [outPutAUth]);
+
+  const logOut = () => {
+    Cookie.remove("jwt");
+    router.replace("/");
+    setAuth(false);
+  };
+
   return (
     <>
       <NavModal>
@@ -22,23 +42,34 @@ const MobileNav:React.FC<types> = ({ click }) => {
             </div>
           </div>
           <div className={classes.li}>
-            <div className={classes.route}>
-          <Link href="/campgrounds">
-             Campgrounds
-          </Link>
-            </div>
-            <div className={classes.route}>
-              <Link href="/profile">Profile</Link>
-            </div>
-            <div className={classes.route}>
-              <Link href="/new">New</Link>
-            </div>
-            <div className={classes.route}>
-              <Link href="/login">Login</Link>
-            </div>
-            <div className={classes.route}>
-              <Link href="/signup">SignUp</Link>
-            </div>
+            <Link href="/campgrounds">
+              <div className={classes.route}>Campgrounds</div>
+            </Link>
+            <Link href="/profile">
+              <div className={classes.route}>Profile</div>
+            </Link>
+            <Link href="/new">
+              <div className={classes.route}>New</div>
+            </Link>
+            {!auth && (
+              <>
+                <Link href="/login">
+                  <div className={classes.route}>Login</div>
+                </Link>
+                <Link href="/signup">
+                  <div className={classes.route}>SignUp</div>
+                </Link>
+              </>
+            )}
+            {auth && (
+              <>
+                <Link href="/login">
+                  <div className={classes.route} onClick={logOut}>
+                    Logout
+                  </div>
+                </Link>
+              </>
+            )}
           </div>
         </div>
       </NavModal>
