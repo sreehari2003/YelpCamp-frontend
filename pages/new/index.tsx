@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useRef, useState, useContext, useEffect } from "react";
 import TextField from "@mui/material/TextField";
 import classes from "../../styles/new.module.scss";
 import Link from "next/link";
@@ -6,7 +6,8 @@ import Head from "next/head";
 import axios from "axios";
 import Alert from "../../modals/alerts/Alert";
 import { notifyMessage } from "../../helper/toast";
-
+import { useRouter } from "next/router";
+import AuthContext from "../../context/authContext";
 interface ress {
   title: string;
   description: string;
@@ -22,12 +23,19 @@ interface result {
 }
 
 const Index = () => {
+  const { auth, removeAuth } = useContext(AuthContext);
   const [err, seteErr] = useState<boolean>(false);
   const title = useRef<HTMLInputElement>();
   const location = useRef<HTMLInputElement>();
   const imgUrl = useRef<HTMLInputElement>();
   const price = useRef<HTMLInputElement>();
   const dsc = useRef<HTMLInputElement>();
+
+  useEffect(() => {
+    if (!auth) {
+      removeAuth();
+    }
+  }, [auth]);
 
   const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();

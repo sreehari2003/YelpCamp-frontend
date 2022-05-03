@@ -6,9 +6,11 @@ import { v4 as uuidv4 } from "uuid";
 import Cards from "../../components/Cards";
 import { response } from "../../type/res";
 
-const index: React.FC = ({ data }: any) => {
-  const elm: response[] = data;
+interface camps {
+  data: response[];
+}
 
+const index = ({ data }: camps) => {
   return (
     <div className={classes.bd}>
       <Head>
@@ -19,7 +21,7 @@ const index: React.FC = ({ data }: any) => {
         <h4>View Campgrounds All Over The World</h4>
       </div>
       <div className={classes.camp}>
-        {elm.map((el: response) => (
+        {data.map((el: response) => (
           <Cards {...el} key={uuidv4()} />
         ))}
       </div>
@@ -35,7 +37,6 @@ export const getStaticProps = async ({}: GetStaticProps) => {
     const res = await fetch("http://localhost:4000/api/camp/v1");
     const datass = await res.json();
     data = datass.res;
-    console.log(res);
     if (!res.ok) throw new Error("Couldn't connect ");
   } catch (e) {
     console.log(e);

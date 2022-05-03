@@ -1,30 +1,16 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import classes from "./navbar.module.scss";
 import Link from "next/link";
 import { HiMenuAlt2 } from "react-icons/hi";
 import { useRouter } from "next/router";
 import Cookie from "js-cookie";
 import MobileNav from "./MobileNav";
+import AuthContext from "../../context/authContext";
 const Navbar: React.FC = () => {
-  const router = useRouter();
-  const outPutAUth = Cookie.get("jwt");
+  const { auth, removeAuth } = useContext(AuthContext);
   const [show, setShow] = useState<boolean>(false);
-  const [auth, setAuth] = useState<boolean>(false);
-
-  useEffect(() => {
-    const outPutAUth = Cookie.get("jwt");
-    if (outPutAUth) {
-      setAuth(true);
-    }
-  }, [outPutAUth]);
   const toggle = () => {
     setShow((el) => !el);
-  };
-
-  const logOut = () => {
-    Cookie.remove("jwt");
-    router.replace("/");
-    setAuth(false);
   };
 
   return (
@@ -60,7 +46,7 @@ const Navbar: React.FC = () => {
           {auth && (
             <>
               <Link href="/login">
-                <h3 className={classes.mainChild} onClick={logOut}>
+                <h3 className={classes.mainChild} onClick={removeAuth}>
                   Logout
                 </h3>
               </Link>

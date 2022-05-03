@@ -1,7 +1,9 @@
-import React from "react";
+import React, { useState, useContext } from "react";
 import Link from "next/link";
 import Head from "next/head";
-const index = () => {
+import AuthContext from "../context/authContext";
+const index: React.FC = () => {
+  const { auth } = useContext(AuthContext);
   return (
     <div>
       <Head>
@@ -14,9 +16,11 @@ const index = () => {
           <Link href="/campgrounds">
             <span className="btn camp">View Campgrounds</span>
           </Link>
-          <span className="btn log">
-            <Link href="/login">Log In</Link>
-          </span>
+          {!auth && (
+            <span className="btn log">
+              <Link href="/login">Log In</Link>
+            </span>
+          )}
         </div>
       </div>
       <ul className="slideshow">
