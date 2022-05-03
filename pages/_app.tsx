@@ -7,6 +7,7 @@ import React from "react";
 import NProgress from "nprogress";
 import { Provider } from "react-redux";
 import { store } from "../store/config";
+import { AuthContextProvider } from "../context/authContext";
 import type { AppProps } from "next/app";
 function MyApp({ Component, pageProps }: AppProps) {
   React.useEffect(() => {
@@ -27,19 +28,20 @@ function MyApp({ Component, pageProps }: AppProps) {
   return (
     <>
       <Provider store={store}>
-        <Navbar />
-        <ToastContainer
-          autoClose={3000}
-          hideProgressBar={false}
-          newestOnTop={false}
-          closeOnClick
-          rtl={false}
-          pauseOnFocusLoss
-          draggable
-          pauseOnHover
-        />
-        {/* {ctx.progress && <LinearProgress className="colo" />} */}
-        <Component {...pageProps} />
+        <AuthContextProvider>
+          <Navbar />
+          <ToastContainer
+            autoClose={3000}
+            hideProgressBar={false}
+            newestOnTop={false}
+            closeOnClick
+            rtl={false}
+            pauseOnFocusLoss
+            draggable
+            pauseOnHover
+          />
+          <Component {...pageProps} />
+        </AuthContextProvider>
       </Provider>
     </>
   );

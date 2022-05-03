@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React, { useRef, useContext } from "react";
 import TextField from "@mui/material/TextField";
 import classes from "../../styles/login.module.scss";
 import Button from "@mui/material/Button";
@@ -7,8 +7,10 @@ import { FcGoogle } from "react-icons/fc";
 import axios from "axios";
 import { notifyMessage } from "../../helper/toast";
 import Cookie from "js-cookie";
+import AuthContext from "../../context/authContext";
 
 const index = () => {
+  const { getAuth } = useContext(AuthContext);
   const API = "http://localhost:4000/api/auth/login";
 
   const email = useRef<HTMLInputElement>();
@@ -29,6 +31,7 @@ const index = () => {
           const { data, status } = await axios.post(API, body);
           if (status > 201 || !data) throw new Error();
           Cookie.set("jwt", data.token);
+          getAuth();
           router.push("/campgrounds");
         } catch (e) {
           notifyMessage("invalid email or password");

@@ -1,33 +1,16 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import classes from "./mobile.module.scss";
 import NavModal from "../../modals/NavModal";
 import Link from "next/link";
 import { GrClose } from "react-icons/gr";
-import Cookie from "js-cookie";
-import { useRouter } from "next/router";
+import AuthContext from "../../context/authContext";
 
 interface types {
   click: () => void;
 }
 
 const MobileNav: React.FC<types> = ({ click }) => {
-  const router = useRouter();
-  const outPutAUth = Cookie.get("jwt");
-  const [show, setShow] = useState<boolean>(false);
-  const [auth, setAuth] = useState<boolean>(false);
-
-  useEffect(() => {
-    const outPutAUth = Cookie.get("jwt");
-    if (outPutAUth) {
-      setAuth(true);
-    }
-  }, [outPutAUth]);
-
-  const logOut = () => {
-    Cookie.remove("jwt");
-    router.replace("/");
-    setAuth(false);
-  };
+  const { auth, removeAuth } = useContext(AuthContext);
 
   return (
     <>
@@ -64,7 +47,7 @@ const MobileNav: React.FC<types> = ({ click }) => {
             {auth && (
               <>
                 <Link href="/login">
-                  <div className={classes.route} onClick={logOut}>
+                  <div className={classes.route} onClick={removeAuth}>
                     Logout
                   </div>
                 </Link>
