@@ -8,6 +8,8 @@ import NProgress from "nprogress";
 import { Provider } from "react-redux";
 import { store } from "../store/config";
 import { AuthContextProvider } from "../context/authContext";
+import mapboxgl from "mapbox-gl"; // eslint-disable-line import/no-webpack-loader-syntax
+import "mapbox-gl/dist/mapbox-gl.css";
 import type { AppProps } from "next/app";
 function MyApp({ Component, pageProps }: AppProps) {
   React.useEffect(() => {
