@@ -13,11 +13,13 @@ const index: React.FC = () => {
       <div id="landing-header">
         <h1 className="display-4">Welcome to YelpCamp!</h1>
         <div className="link">
-          <Link href="/campgrounds">
-            <span className="btn camp">View Campgrounds</span>
-          </Link>
+          {auth && (
+            <Link href="/campgrounds">
+              <span className="btn camp">View Campgrounds</span>
+            </Link>
+          )}
           {!auth && (
-            <span className="btn log">
+            <span className="btn camp">
               <Link href="/login">Log In</Link>
             </span>
           )}

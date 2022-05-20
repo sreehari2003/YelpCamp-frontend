@@ -15,26 +15,22 @@
     @content;
   }
 }
-
+.main{
+  padding:30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
 .cont {
-  margin: 10px auto;
-  // background: grey;
-  height: 110%;
-  width: 100%;
-  padding-bottom: 20px;
-  // border: 1px solid grey;
-  & h1 {
-    font-size: 40px;
-    font-family: sans-serif;
-    padding: 100px;
-    margin-top: -60px;
-    // margin-bottom: 10px;
-    text-align: center;
-    @include mob {
-      // margin-top: -50px;
-      font-size: 30px;
-    }
-  }
+  margin:50px;
+  min-height: 100vh;
+  display:  flex;
+  justify-content: center;
+  // align-items: center;
+  flex-direction: column;
+
+  // align-items: center;
 }
 .input {
   height: 200px;

@@ -5,12 +5,22 @@ import classes from "../../styles/camp.module.scss";
 import { v4 as uuidv4 } from "uuid";
 import Cards from "../../components/Cards";
 import { response } from "../../type/res";
-
+import { useRouter } from "next/router";
+import { useContext, useEffect } from "react";
+import AuthContext from "../../context/authContext";
 interface camps {
   data: response[];
 }
 
 const index = ({ data }: camps) => {
+  const { auth } = useContext(AuthContext);
+  const router = useRouter();
+  useEffect(() => {
+    console.log(auth);
+    if (!auth) {
+      router.push("/login");
+    }
+  }, []);
   return (
     <div className={classes.bd}>
       <Head>
