@@ -90,14 +90,16 @@ const Index = () => {
   };
   return (
     <>
-      {err && <Alert code={404} />}
-      <Head>
-        <title>New Camp</title>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-      </Head>
-      <div className={classes.cont}>
+      <div className={classes.main}>
+        <Head>
+          <title>New Camp</title>
+          <meta
+            name="viewport"
+            content="width=device-width, initial-scale=1.0"
+          />
+        </Head>
         <h1>New Campgrounds</h1>
-        <form onSubmit={onSubmit}>
+        <form onSubmit={onSubmit} className={classes.cont}>
           <div className={`${classes.input} flex col put`}>
             <div className="col">
               <label htmlFor="outlined-search">title</label>
@@ -121,6 +123,30 @@ const Index = () => {
                 className={classes.text}
                 required
                 inputRef={location}
+              />
+            </div>
+            <div className="col">
+              <label htmlFor="outlined-search">Longitude</label>
+              <TextField
+                id="outlined-search"
+                label=""
+                type="number"
+                variant="outlined"
+                className={classes.text}
+                required
+                inputRef={price}
+              />
+            </div>
+            <div className="col">
+              <label htmlFor="outlined-search">Latitude</label>
+              <TextField
+                id="outlined-search"
+                label=""
+                type="number"
+                variant="outlined"
+                className={classes.text}
+                required
+                inputRef={price}
               />
             </div>
             <div className="col">
