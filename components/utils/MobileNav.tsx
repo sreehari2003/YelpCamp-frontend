@@ -28,9 +28,9 @@ const MobileNav: React.FC<types> = ({ click }) => {
             <Link href="/campgrounds">
               <div className={classes.route}>Campgrounds</div>
             </Link>
-            <Link href="/profile">
-              <div className={classes.route}>Profile</div>
-            </Link>
+            {/* <Link href="/profile"> */}
+            {/* <div className={classes.route}>Profile</div> */}
+            {/* </Link> */}
             <Link href="/new">
               <div className={classes.route}>New</div>
             </Link>

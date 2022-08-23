@@ -16,7 +16,6 @@ const index = ({ data }: camps) => {
   const { auth } = useContext(AuthContext);
   const router = useRouter();
   useEffect(() => {
-    console.log(auth);
     if (!auth) {
       router.push("/login");
     }
@@ -44,26 +43,28 @@ export default index;
 export const getStaticProps = async ({}: GetStaticProps) => {
   let data;
   try {
-    const res = await fetch("http://localhost:4000/api/camp/v1");
+    const res = await fetch("https://apiyelpcamp.herokuapp.com/api/camp/v1");
     const datass = await res.json();
     data = datass.res;
     if (!res.ok) throw new Error("Couldn't connect ");
   } catch (e) {
     console.log(e);
   }
+
+  if (!data) {
+    return {
+      redirect: {
+        destination: "/login", //provide the patj
+      },
+    };
+  }
+
   if (!Array.isArray(data)) {
     return {
       notFound: true,
     };
   }
 
-  if (!data) {
-    return {
-      redirect: {
-        destination: "/", //provide the patj
-      },
-    };
-  }
   return {
     props: {
       data: data,

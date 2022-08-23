@@ -56,7 +56,9 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
   const { params } = ctx;
   let data;
   if (params) {
-    const res = await fetch(`http://localhost:4000/api/camp/v1/${params.id}`);
+    const res = await fetch(
+      `${process.env.NEXT_PUBLIC_API}/api/camp/v1/${params.id}`
+    );
     data = await res.json();
   }
   const res: response = data.res;
