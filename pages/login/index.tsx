@@ -11,7 +11,7 @@ import AuthContext from "../../context/authContext";
 
 const index = () => {
   const { getAuth } = useContext(AuthContext);
-  const API = "http://localhost:4000/api/auth/login";
+  const API = `${process.env.NEXT_PUBLIC_API}/api/auth/login`;
 
   const email = useRef<HTMLInputElement>();
   const password = useRef<HTMLInputElement>();
@@ -70,14 +70,14 @@ const index = () => {
               <Button type="submit" variant="contained">
                 Login
               </Button>
-              <span
+              {/* <span
                 className={classes.forgot}
                 onClick={() => router.push("/login/reset")}
               >
                 Forgot password ?{" "}
-              </span>
+              </span> */}
             </div>
-            <div className={classes.google}>
+            {/* <div className={classes.google}>
               <span className={classes.or}>or</span>
               <div className={classes.txts}>
                 <Button variant="contained" className={classes.oAuth}>
@@ -85,7 +85,7 @@ const index = () => {
                   <FcGoogle />
                 </Button>
               </div>
-            </div>
+            </div> */}
           </form>
         </div>
       </div>

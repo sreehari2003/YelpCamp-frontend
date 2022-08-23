@@ -67,11 +67,10 @@ const Index = () => {
           image: img,
           price: pr,
         };
-        console.log(dt);
         const sendData = async () => {
           try {
             const res: result = await axios.post(
-              "http://localhost:4000/api/camp/v1",
+              `${process.env.NEXT_PUBLIC_API}/api/camp/v1`,
               dt
             );
             if (!res.ok) {

@@ -12,7 +12,7 @@ const signUp: React.FC = () => {
   const password = useRef<HTMLInputElement>();
   const confirmPassword = useRef<HTMLInputElement>();
 
-  const api = "http://localhost:4000/api/auth/signup";
+  const api = `${process.env.NEXT_PUBLIC_API}/api/auth/signup`;
 
   const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -103,13 +103,13 @@ const signUp: React.FC = () => {
             </Button>
           </div>
         </form>
-        <span>or</span>
+        {/* <span>or</span>
         <div className={styles.txts}>
           <Button type="submit" variant="contained" className={styles.oAuth}>
             Google
             <FcGoogle />
           </Button>
-        </div>
+        </div> */}
       </div>
     </>
   );

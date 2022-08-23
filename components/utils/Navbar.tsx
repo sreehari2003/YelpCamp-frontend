@@ -25,9 +25,9 @@ const Navbar: React.FC = () => {
           <Link href="/campgrounds">
             <h3 className={classes.mainChild}>Campgrounds</h3>
           </Link>
-          <Link href="/profile">
-            <h3 className={classes.mainChild}>Profile</h3>
-          </Link>
+          {/* <Link href="/profile"> */}
+          {/* <h3 className={classes.mainChild}>Profile</h3> */}
+          {/* </Link> */}
           <Link href="/new">
             <h3 className={classes.mainChild}>New</h3>
           </Link>
